@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: counterpoint-pos
+    runtime: docker
+    plan: starter
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: counterpoint-pos-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_PATH
+        value: /var/data/retail_pos.db
+      - key: PUBLIC_URL
+        value: https://pos.openkarts.in
+      - key: DEMO_MODE
+        value: "false"
+      - key: CORS_ORIGINS
+        value: https://pos.openkarts.in
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PLATFORM_OWNER_EMAIL
+        sync: false
+      - key: PLATFORM_OWNER_PASSWORD
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false

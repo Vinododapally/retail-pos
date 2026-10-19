@@ -1,0 +1,9 @@
+.git
+.idea
+.venv
+__pycache__
+*.py[cod]
+node_modules
+dist
+retail_pos.db
+.env
